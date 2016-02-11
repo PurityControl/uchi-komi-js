@@ -1,0 +1,19 @@
+#+TITLE: Retrospective for multiples of 3 and 5.
+
+Simple first implmentation more about process of setting up npm and testing.
+
+*Process Followed
+- npm init => fill in requested information
+  - this includes giving path to mocha that doesn't exist yet
+  - node_modules/.bin/mocha
+- install testing framework and save to package.json
+  - npm install mocha --save-dev
+  - npm install chai --save-dev
+- require chai correctly
+  - var assert = require("chai").assert;
+
+TODO
+set up a yeoman template that implements this and gulp which automates
+unit testing.
+
+
