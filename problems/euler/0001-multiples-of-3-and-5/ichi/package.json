@@ -6,6 +6,10 @@
   "scripts": {
     "test": "node_modules/.bin/mocha"
   },
+  "keywords": {
+    "type": "git",
+    "url": "https://github.com/PurityControl/uchi-komi-js/blob/master/README.org"
+  },
   "keywords": [
     "euler",
     "uchi-komi"
