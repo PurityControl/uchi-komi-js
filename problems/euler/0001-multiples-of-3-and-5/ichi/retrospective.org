@@ -1,5 +1,9 @@
 #+TITLE: Retrospective for multiples of 3 and 5.
 
+* Running the project
+- run "npm test"
+
+* Retrospective
 Simple first implmentation more about process of setting up npm and testing.
 
 *Process Followed
@@ -12,7 +16,7 @@ Simple first implmentation more about process of setting up npm and testing.
 - require chai correctly
   - var assert = require("chai").assert;
 
-TODO
+*TODO
 set up a yeoman template that implements this and gulp which automates
 unit testing.
 
