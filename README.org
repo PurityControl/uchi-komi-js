@@ -1,0 +1,16 @@
+#+TITLE: Uchi komi for JavaScript
+
+* Problem Sets
+The problem sets for all uchi komi language repos are held in a dedicated
+repo. This avoids having to keep problems in sync across all the repos.
+A problem can now be added to the individual language repo only when ready
+to tackle it.
+The problem repo is at [[https://github.com/PurityControl/uchi-komi-problems]]
+
+* Gokyo
+
+- [[file:doc/ikkyo.org][Dai-ikkyo]] - Settng up the environment
+- [[file:doc/nikyo.org][Dai-nikyo]] - Testing
+- [[file:doc/sankyo.org][Dai-sankyo]] - Resources / Cheat Sheets
+- [[file:doc/yonkyo.org][Dai-yonkyo]] - Workflows
+- [[file:doc/gokyo.org][Dai-gokyo]] - Documentation
