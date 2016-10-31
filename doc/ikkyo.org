@@ -71,7 +71,6 @@ information:
    },
    #+END_SRC
 
-
 ** Express
 
 Express is a minamilistic web framework. To find more information on
@@ -85,3 +84,49 @@ to your ~package.json~ file.
 #+BEGIN_SRC javascript
 npm install express --save
 #+END_SRC
+
+** Bower
+
+Bower is a tool to aid package management for the frontend ie the
+dependencies added to the html pages you render to your clients.
+However this is backend tooling because these are things you setup on
+your server and deployed through node.
+
+Bower allows you to control which javascript libraries and what
+versions you install for the browser to use. Bower will not update
+your html files to refer to these libraries, this will either have to
+done manually or configured through a task manager such as gulp or
+grunt.
+Once you have bower setup you should refer to the section on gulp to
+see how to set it up to ensure your html files are updated to refer to
+the correct libraries that bower provides.
+
+*** Bower setup
+
+Current recommended practice is to install bower globally so it can be
+run from the command line but bower could be triggered by an npm
+script referring to a local installation of bower.
+
+Once setup the bower.json manages bower information the same way that
+package.json manages information for npm.
+
+#+BEGIN_SRC shell
+npm install bower -g  # could bower be setup as a script in npm scripts?
+bower init # setup your bower.json file
+#+END_SRC
+
+Configuration of bower is done in the ~.bowerrc~ file. The default
+location of where bower installs fronted dependencies is likely not
+what you want and so this is the place to configure bower to install
+its packages somewhere more useful.
+
+#+BEGIN_SRC javascript
+// .bowerrc
+{
+  "directory": "public/lib"
+}
+#+END_SRC
+
+Then you can install frontend dependencies such as bootstrap with a
+command like ~bower install bootstrap --save~.
+
