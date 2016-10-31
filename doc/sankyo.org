@@ -1,1 +1,13 @@
 #+TITLE: Dai-sankyo (Group 3) - Resources / CheatSheets
+
+* Database documentation
+The links below are useful links for connecting to databases through
+node.
+
+- [[http://docs.sequelizejs.com/en/v3/][Sequalize]] an orm sql library
+- [[https://expressjs.com/en/guide/database-integration.html][Database integration]] with Express
+- [[https://github.com/dscape/nano][Nano]] for accessing couchdb
+
+
+
+
