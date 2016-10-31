@@ -9,3 +9,8 @@ assertion framework, for this ~chai~ is a very common solution.
 - [[http://jasmine.github.io][Jasmine]] testing framework
 - [[https://mochajs.org][Mocha]] test runner
 - [[http://chaijs.com][Chai]] assertion library
+- Express testing
+  - [[https://github.com/visionmedia/supertest][Supertest]] is an http testing framwework allowing you to run
+    integration tests against Express.
+  - [[https://cheerio.js.org][Cheerio]] is server side minamilist jquery framework allowing you to
+    interrogate the response you capture using jquery syntax.
