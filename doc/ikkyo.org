@@ -1,1 +1,87 @@
 #+TITLE: Dai-ikkyo (group 1) - Setting up the environment
+
+* Javascript and the runtime environment.
+
+Javascript as a language, possibly more than any other language, is
+largely effected by its runtime environment. The two most common
+environments for javascript are within the browser and using node.
+When using javascript in the browser this is often referred to as
+frontend development, and for node, backend development.
+
+The environment for both, a single threaded enviroment with an event
+loop, is similar making concepts in both environments easier to
+understand.
+
+* Backend
+
+Development on the backend is largely done by setting up a node
+environment to execute your code on. Node is continually being updated
+and newer versions being continually released. This means if you
+develop many projects they will each be accustomed to using a certain
+version of node and will have their own dependencies. In order to
+mitigate against this issue a recommended way to install node is
+through [[https://github.com/creationix/nvm][nvm by creationix]]. If you develop on windows there are links
+to equivalents on this site. Once nvm is installed you can have
+multiple versions of node installed and switch between them. Another
+option for cleanly managing environments would be to use containers.
+
+Installation of node will also install npm, so once you are setup with
+node you have all the tools you need to start working on your project.
+Any additional tooling you may need can be installed with ~npm~.
+
+
+** NPM
+
+Npm is the package manager that is installed as part of your node
+installation. Npm allows you to mange your project and maintain
+information about your project including:
+
+- installing packages
+- record project information including:
+  - package dependencies
+  - development package dependencies
+  - scripts to aid development
+  - version control location
+  - project name
+  - project license
+  - project author
+
+This also allows node, throug npm, to reinstall your dependencies and
+environment should your project be donwloaded to a new location.
+
+** Project setup
+
+Project information is stored in a file called ~package.json~. The
+quickest way to create this is by running the command ~npm init~. This
+will prompt you for some basic information about the project. Once you
+have confirmed the information then it will create your ~package.json~
+file with the appropriate information populate in it.
+
+Once you have this setup you should consider adding the following
+information:
+
+1. If your project is not to be shared you should set the property
+   '"private": true' which will prevent you accidentally sharing it.
+2. adding a ~start~ property to the scripts object so that you can start
+   your project with ~npm start~
+   #+BEGIN_SRC javasript
+   "scripts": {
+     "start": "node app",
+     ....
+   },
+   #+END_SRC
+
+
+** Express
+
+Express is a minamilistic web framework. To find more information on
+Express refer to the documetation of the walkthrough of [[https://github.com/PurityControl/learn-saf-manning-express-in-action][Express in
+Action]].
+
+Installing express requires installing node, and setting up your
+project as described above. Then you can install express and save it
+to your ~package.json~ file.
+
+#+BEGIN_SRC javascript
+npm install express --save
+#+END_SRC
