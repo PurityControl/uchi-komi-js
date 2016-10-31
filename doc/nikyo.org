@@ -1,1 +1,11 @@
 #+TITLE: Dai-nikyo (Group 2) - Testing
+
+* Resources
+
+The most common frameworks for testing javascript are ~jasmine~ and
+~mocha~. Mocha is a test runner only and needs to be provided with an
+assertion framework, for this ~chai~ is a very common solution.
+
+- [[http://jasmine.github.io][Jasmine]] testing framework
+- [[https://mochajs.org][Mocha]] test runner
+- [[http://chaijs.com][Chai]] assertion library
