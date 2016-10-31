@@ -33,18 +33,21 @@ Any additional tooling you may need can be installed with ~npm~.
 ** NPM
 
 Npm is the package manager that is installed as part of your node
-installation. Npm allows you to maintain information about your
-project including:
+installation. Npm allows you to mange your project and maintain
+information about your project including:
 
-- install packages
-- package dependencies
-- development package dependencies
-- scripts to aid development
-- project information including:
+- installing packages
+- record project information including:
+  - package dependencies
+  - development package dependencies
+  - scripts to aid development
   - version control location
   - project name
   - project license
   - project author
+
+This also allows node, throug npm, to reinstall your dependencies and
+environment should your project be donwloaded to a new location.
 
 ** Project setup
 
