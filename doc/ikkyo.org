@@ -90,11 +90,11 @@ npm install express --save
 Bower is a tool to aid package management for the frontend ie the
 dependencies added to the html pages you render to your clients.
 However this is backend tooling because these are things you setup on
-your server and deploy through node.
+your server and deployed through node.
 
 Bower allows you to control which javascript libraries and what
 versions you install for the browser to use. Bower will not update
-your html files to refer to this libraries, this will either have to
+your html files to refer to these libraries, this will either have to
 done manually or configured through a task manager such as gulp or
 grunt.
 Once you have bower setup you should refer to the section on gulp to
