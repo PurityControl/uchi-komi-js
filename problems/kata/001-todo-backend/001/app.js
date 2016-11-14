@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
   console.log('get triggered');
-  res.json([]);
+  todo.view('todos', 'all_todos', function(err, body) {
+    res.json(body.rows);
+  });
 });
 
 app.post('/', function(req, res, next) {
