@@ -1,11 +1,13 @@
 var express = require('express');
 var cors = require('cors');
+var bodyParser = require('body-parser');
 var nano = require('nano')('http://localhost:8984');
 var todo = nano.db.use('todo');
 
 var app = express();
 
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
   console.log('get triggered');
