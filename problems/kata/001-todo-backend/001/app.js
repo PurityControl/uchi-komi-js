@@ -61,6 +61,17 @@ app.get('/:url', function(req, res, next) {
   });
 });
 
+app.patch('/:url', function(req, res, next) {
+  todo.get(req.params.url, function(err, body) {
+    if (req.body.title) {
+      body.title  = req.body.title;
+    }
+    todo.insert(body, function(err, update) {
+      res.json(body);
+    });
+  });
+});
+
 app.listen(3000, function() {
   console.log('Cors enabled server listening on port 3000');
 });
