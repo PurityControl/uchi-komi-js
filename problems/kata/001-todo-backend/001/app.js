@@ -16,7 +16,8 @@ app.get('/', function(req, res, next) {
 
 app.post('/', function(req, res, next) {
   console.log('post triggered');
-  res.json([]);
+  var task = {title: req.body.title};
+  res.json(task);
 });
 
 app.listen(3000, function() {
