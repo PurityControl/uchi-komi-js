@@ -1,0 +1,11 @@
+{
+  "name": "todo-backend",
+  "version": "0.0.1",
+  "description": "kata of todo-backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Purity Control",
+  "license": "ISC"
+}
