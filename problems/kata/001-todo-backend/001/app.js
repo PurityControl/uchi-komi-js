@@ -27,10 +27,13 @@ app.post('/', function(req, res, next) {
     if (err) {
       console.log(err);
     }
-    console.log(JSON.stringify(body));
     task._id = body.id;
     task._rev = body.rev;
-    res.json(task);
+    // assign a url based on id and commit back to database
+    task.url = 'http://localhost:3000/' + body.id;
+    todo.insert(task, function(err, body) {
+      res.json(task);
+    });
   });
 });
 
