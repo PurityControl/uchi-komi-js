@@ -66,6 +66,9 @@ app.patch('/:url', function(req, res, next) {
     if (req.body.title) {
       body.title  = req.body.title;
     }
+    if (req.body.completed) {
+      body.completed  = req.body.completed;
+    }
     todo.insert(body, function(err, update) {
       res.json(body);
     });
