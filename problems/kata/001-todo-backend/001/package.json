@@ -1,0 +1,23 @@
+{
+  "name": "todo-backend",
+  "version": "0.0.1",
+  "description": "kata of todo-backend",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app",
+    "test": "mocha"
+  },
+  "author": "Purity Control",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "nano": "^6.2.0"
+  }
+}

@@ -1,0 +1,12 @@
+#+TITLE: KATA 001 for ToDo Backend (14/11/2016)
+
+* Sitting one - going for shameless green.
+The first commit of the kata is going for shameless green.
+There has been no refactoring just getting the code to green based on
+the results of tests.
+The next stage should focus on the refactor cycle trying to improve
+the code in discrete steps without ever breaking the tests.
+
+** Tests timing
+Using couchdb as the data base and everything on localhost tests are
+completing in around 0.7s.
