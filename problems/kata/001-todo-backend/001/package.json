@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "kata of todo-backend",
   "main": "app.js",
+  "private": true,
   "scripts": {
     "test": "mocha"
   },
