@@ -54,6 +54,13 @@ app.delete('/', function(req, res, next) {
   });
 });
 
+app.get('/:url', function(req, res, next) {
+  todo.get(req.params.url, function(err, body) {
+    console.log(body);
+    res.json(body);
+  });
+});
+
 app.listen(3000, function() {
   console.log('Cors enabled server listening on port 3000');
 });
