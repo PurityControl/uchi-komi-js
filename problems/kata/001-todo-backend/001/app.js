@@ -22,7 +22,7 @@ app.get('/', function(req, res, next) {
 
 app.post('/', function(req, res, next) {
   console.log('post triggered');
-  var task = {title: req.body.title, completed: false};
+  var task = {title: req.body.title, completed: false, order: req.body.order};
   todo.insert(task, function(err, body) {
     if (err) {
       console.log(err);
