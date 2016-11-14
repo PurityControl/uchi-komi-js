@@ -37,11 +37,18 @@ app.post('/', function(req, res, next) {
 app.delete('/', function(req, res, next) {
   console.log('delete triggered');
   todo.view('todos', 'all_todos', function(err, body) {
-    for (var row of body.rows) {
-      todo.destroy(row.value._id, row.value._rev);
+    if (body.rows.length !== 0) {
+      body.rows.forEach(function(curr, index, array) {
+        todo.destroy(curr.value._id, curr.value._rev, function(err, body) {
+          if (index === array.length - 1) {
+            res.json([]);
+          }
+        });
+      });
+    } else {
+      res.json([]);
     }
   });
-  res.json([]);
 });
 
 app.listen(3000, function() {
