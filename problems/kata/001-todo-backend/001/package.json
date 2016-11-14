@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "cors": "^2.8.1",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "nano": "^6.2.0"
   }
 }

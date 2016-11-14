@@ -1,5 +1,7 @@
 var express = require('express');
 var cors = require('cors');
+var nano = require('nano')('http://localhost:8984');
+var todo = nano.db.use('todo');
 
 var app = express();
 
