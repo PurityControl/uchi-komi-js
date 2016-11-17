@@ -3,13 +3,13 @@ var db = nano.db.use('todo');
 
 var todo = {};
 
-todo.getAll = function() {
+todo.getAll = function(callback) {
   var results = [];
   db.view('todos', 'all_todos', function(err, body) {
     for (var row of body.rows) {
       results.push(row.value);
     }
-    return results;
+    callback(err, results);
   });
 };
 
