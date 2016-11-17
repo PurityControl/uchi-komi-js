@@ -63,4 +63,12 @@ todo.updateTask = function(url, updates, callback) {
   });
 };
 
+todo.deleteTask = function(url, callback) {
+  this.getTask(url, function(err, task) {
+    db.destroy(task._id, task._rev, function(err, body) {
+      callback(err, []);
+    });
+  });
+};
+
 module.exports = todo;
