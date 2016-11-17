@@ -31,4 +31,20 @@ todo.addTask = function(task, callback) {
   });
 };
 
+todo.deleteAll = function(callback) {
+  db.view('todos', 'all_todos', function(err, body) {
+    if (body.rows.length !== 0) {
+      body.rows.forEach(function(curr, index, array) {
+        db.destroy(curr.value._id, curr.value._rev, function(err, body) {
+          if (index === array.length - 1) {
+            callback(err, []);
+          }
+        });
+      });
+    } else {
+      callback(err, []);
+    }
+  });
+};
+
 module.exports = todo;
