@@ -24,12 +24,8 @@ todo.addTask = function(task, callback) {
       // assign a url based on id and commit back to database
       // FIXME: don't use hardcoded params
       task.url = 'http://localhost:3000/' + body.id;
-      todo.insert(task, function(err, body) {
-        if (err) {
-          callback(err);
-        } else {
-          callback(nil, task);
-        }
+      db.insert(task, function(err, body) {
+        callback(err, task);
       });
     }
   });
