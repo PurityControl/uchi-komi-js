@@ -1,9 +1,6 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-// FIXME: remove direct use of nano when all library calls removed
-var nano = require('nano')('http://localhost:5984');
-var todo = nano.db.use('todo');
 var todos = require('./todo');
 
 var app = express();
