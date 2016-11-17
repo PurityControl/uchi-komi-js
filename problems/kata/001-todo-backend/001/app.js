@@ -14,7 +14,12 @@ app.use(bodyParser.json());
 app.get('/', function(req, res, next) {
   todos.getAll(function(err, results) {
     console.log('Calling getAll from get /');
-    res.json(results);
+    if (err) {
+      res.stats(500);
+      res.json({error: 'error retrieving tasks'});
+    } else {
+      res.json(results);
+    }
   });
 });
 
