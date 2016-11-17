@@ -76,10 +76,14 @@ app.patch('/:url', function(req, res, next) {
 });
 
 app.delete('/:url', function(req, res, next) {
-  todo.get(req.params.url, function(err, body) {
-    todo.destroy(body._id, body._rev, function(err, body) {
-      res.json([]);
-    });
+  todos.deleteTask(req.params.url, function(err, result) {
+    console.log('deleting task from PATH /' + req.params.url);
+    if (err) {
+      req.status(500);
+      req.response({error: 'couldn\'t delete task'});
+    } else {
+      res.json(result);
+    }
   });
 });
 
