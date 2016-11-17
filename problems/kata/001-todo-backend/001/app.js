@@ -21,17 +21,13 @@ app.get('/', function(req, res, next) {
 app.post('/', function(req, res, next) {
   console.log('post triggered');
   var task = {title: req.body.title, completed: false, order: req.body.order};
-  todo.insert(task, function(err, body) {
+  todos.addTask(task, function(err, result) {
     if (err) {
-      console.log(err);
+      res.status(500);
+      res.json({error: "failed to create task"});
+    } else {
+      res.json(result);
     }
-    task._id = body.id;
-    task._rev = body.rev;
-    // assign a url based on id and commit back to database
-    task.url = 'http://localhost:3000/' + body.id;
-    todo.insert(task, function(err, body) {
-      res.json(task);
-    });
   });
 });
 
