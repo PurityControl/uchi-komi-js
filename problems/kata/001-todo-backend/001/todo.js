@@ -13,4 +13,25 @@ todo.getAll = function(callback) {
   });
 };
 
+todo.addTask = function(task, callback) {
+  db.insert(task, function(err, body) {
+    if (err) {
+      callback(err);
+    } else {
+      task._id = body.id;
+      task._rev  = body.rev;
+      // assign a url based on id and commit back to database
+      // FIXME: don't use hardcoded params
+      task.url = 'http://localhost:3000/' + body.id;
+      todo.insert(task, function(err, body) {
+        if (err) {
+          callback(err);
+        } else {
+          callback(nil, task);
+        }
+      });
+    }
+  });
+};
+
 module.exports = todo;
