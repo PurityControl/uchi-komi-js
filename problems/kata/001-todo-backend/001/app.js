@@ -64,19 +64,14 @@ app.get('/:url', function(req, res, next) {
 });
 
 app.patch('/:url', function(req, res, next) {
-  todo.get(req.params.url, function(err, body) {
-    if (req.body.title) {
-      body.title  = req.body.title;
+  todos.updateTask(req.params.url, req.body, function(err, result) {
+    console.log('updating task from PATH /' + req.params.url);
+    if (err) {
+      req.status(500);
+      req.response({error: 'couldn\'t update task'});
+    } else {
+      res.json(result);
     }
-    if (req.body.completed) {
-      body.completed  = req.body.completed;
-    }
-    if (req.body.order) {
-      body.order  = req.body.order;
-    }
-    todo.insert(body, function(err, update) {
-      res.json(body);
-    });
   });
 });
 
