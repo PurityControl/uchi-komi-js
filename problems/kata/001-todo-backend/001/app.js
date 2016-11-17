@@ -11,12 +11,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
-  console.log('get triggered');
-  var results = [];
-  todo.view('todos', 'all_todos', function(err, body) {
-    for (var row of body.rows) {
-      results.push(row.value);
-    }
+  todos.getAll(function(err, results) {
+    console.log('Calling getAll from get /');
     res.json(results);
   });
 });
