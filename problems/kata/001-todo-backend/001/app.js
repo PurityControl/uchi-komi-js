@@ -11,6 +11,8 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// TODO: abstract callback used in all routers
+
 app.get('/', function(req, res, next) {
   todos.getAll(function(err, results) {
     console.log('Calling getAll from get /');
