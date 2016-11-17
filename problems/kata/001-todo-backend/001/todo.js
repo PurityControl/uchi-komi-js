@@ -54,4 +54,13 @@ todo.getTask = function(url, callback) {
   });
 };
 
+todo.updateTask = function(url, updates, callback) {
+  this.getTask(url, function(err, task) {
+    _.assign(task, updates);
+    db.insert(task, function(err , updated) {
+      callback(err, task);
+    });
+  });
+};
+
 module.exports = todo;
