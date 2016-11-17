@@ -19,9 +19,9 @@ app.get('/', function(req, res, next) {
 });
 
 app.post('/', function(req, res, next) {
-  console.log('post triggered');
   var task = {title: req.body.title, completed: false, order: req.body.order};
   todos.addTask(task, function(err, result) {
+    console.log('adding task from POST /');
     if (err) {
       res.status(500);
       res.json({error: 'failed to create task'});
