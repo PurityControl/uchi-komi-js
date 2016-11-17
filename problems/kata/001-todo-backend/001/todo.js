@@ -47,4 +47,10 @@ todo.deleteAll = function(callback) {
   });
 };
 
+todo.getTask = function(url, callback) {
+  db.get(url, function(err, body) {
+    callback(err, body);
+  });
+};
+
 module.exports = todo;
