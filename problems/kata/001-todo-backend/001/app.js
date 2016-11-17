@@ -24,7 +24,7 @@ app.post('/', function(req, res, next) {
   todos.addTask(task, function(err, result) {
     if (err) {
       res.status(500);
-      res.json({error: "failed to create task"});
+      res.json({error: 'failed to create task'});
     } else {
       res.json(result);
     }
