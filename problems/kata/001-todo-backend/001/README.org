@@ -10,3 +10,17 @@ the code in discrete steps without ever breaking the tests.
 ** Tests timing
 Using couchdb as the data base and everything on localhost tests are
 completing in around 0.7s.
+
+* Sitting Two
+First refactor. The point of this refactoring was to move the`database
+calls out of the main application and into its own file. The goal was
+to completely implement the horizontal refactoring without being
+distracted by other refactorings along the way. Where issues were
+noticed then these were added by making TODO or FIXME notes.
+
+At first blush I have made a new file of about 75 lines long and the
+main file length has not changed. However I think overall the code is
+cleaner and easier to reason about. Further the flocking rules in
+abstracting out the code smells have made each router have a very
+similar pattern. This should allow us to make further improvements in
+future refactorings.

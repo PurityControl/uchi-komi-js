@@ -1,88 +1,86 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var nano = require('nano')('http://localhost:5984');
-var todo = nano.db.use('todo');
+var todos = require('./todo');
 
 var app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
+// TODO: abstract callback used in all routers
+
 app.get('/', function(req, res, next) {
-  console.log('get triggered');
-  var results = [];
-  todo.view('todos', 'all_todos', function(err, body) {
-    for (var row of body.rows) {
-      results.push(row.value);
+  todos.getAll(function(err, results) {
+    console.log('Calling getAll from get /');
+    if (err) {
+      res.stats(500);
+      res.json({error: 'error retrieving tasks'});
+    } else {
+      res.json(results);
     }
-    res.json(results);
   });
 });
 
 app.post('/', function(req, res, next) {
-  console.log('post triggered');
   var task = {title: req.body.title, completed: false, order: req.body.order};
-  todo.insert(task, function(err, body) {
+  todos.addTask(task, function(err, result) {
+    console.log('adding task from POST /');
     if (err) {
-      console.log(err);
+      res.status(500);
+      res.json({error: 'failed to create task'});
+    } else {
+      res.json(result);
     }
-    task._id = body.id;
-    task._rev = body.rev;
-    // assign a url based on id and commit back to database
-    task.url = 'http://localhost:3000/' + body.id;
-    todo.insert(task, function(err, body) {
-      res.json(task);
-    });
   });
 });
 
 app.delete('/', function(req, res, next) {
-  console.log('delete triggered');
-  todo.view('todos', 'all_todos', function(err, body) {
-    if (body.rows.length !== 0) {
-      body.rows.forEach(function(curr, index, array) {
-        todo.destroy(curr.value._id, curr.value._rev, function(err, body) {
-          if (index === array.length - 1) {
-            res.json([]);
-          }
-        });
-      });
+  todos.deleteAll(function(err, result) {
+    console.log('delete all tasks from DELETE /');
+    if (err) {
+      res.status(500);
+      res.json({error: 'error deleting all tasks'});
     } else {
-      res.json([]);
+      res.json(result);
     }
   });
 });
 
 app.get('/:url', function(req, res, next) {
-  todo.get(req.params.url, function(err, body) {
-    console.log(body);
-    res.json(body);
+  var url = req.params.url;
+  todos.getTask(url, function(err, result) {
+    console.log('getting task from GET /' + url);
+    if (err) {
+      res.status(500);
+      res.json({error: 'failed to get task'});
+    } else {
+      res.json(result);
+    }
   });
 });
 
 app.patch('/:url', function(req, res, next) {
-  todo.get(req.params.url, function(err, body) {
-    if (req.body.title) {
-      body.title  = req.body.title;
+  todos.updateTask(req.params.url, req.body, function(err, result) {
+    console.log('updating task from PATH /' + req.params.url);
+    if (err) {
+      req.status(500);
+      req.response({error: 'couldn\'t update task'});
+    } else {
+      res.json(result);
     }
-    if (req.body.completed) {
-      body.completed  = req.body.completed;
-    }
-    if (req.body.order) {
-      body.order  = req.body.order;
-    }
-    todo.insert(body, function(err, update) {
-      res.json(body);
-    });
   });
 });
 
 app.delete('/:url', function(req, res, next) {
-  todo.get(req.params.url, function(err, body) {
-    todo.destroy(body._id, body._rev, function(err, body) {
-      res.json([]);
-    });
+  todos.deleteTask(req.params.url, function(err, result) {
+    console.log('deleting task from PATH /' + req.params.url);
+    if (err) {
+      req.status(500);
+      req.response({error: 'couldn\'t delete task'});
+    } else {
+      res.json(result);
+    }
   });
 });
 
