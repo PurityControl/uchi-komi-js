@@ -51,9 +51,15 @@ app.delete('/', function(req, res, next) {
 });
 
 app.get('/:url', function(req, res, next) {
-  todo.get(req.params.url, function(err, body) {
-    console.log(body);
-    res.json(body);
+  var url = req.params.url;
+  todos.getTask(url, function(err, result) {
+    console.log('getting task from GET /' + url);
+    if (err) {
+      res.status(500);
+      res.json({error: 'failed to get task'});
+    } else {
+      res.json(result);
+    }
   });
 });
 
