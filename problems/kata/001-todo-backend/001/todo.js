@@ -1,6 +1,7 @@
 // FIXME: don't use hardcoded params
 var nano = require('nano')('http://localhost:5984');
 var db = nano.db.use('todo');
+var _ = require('lodash');
 
 var todo = {};
 
