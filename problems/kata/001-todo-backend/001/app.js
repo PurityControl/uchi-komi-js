@@ -3,6 +3,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var nano = require('nano')('http://localhost:5984');
 var todo = nano.db.use('todo');
+var todos = require('./todo');
 
 var app = express();
 
