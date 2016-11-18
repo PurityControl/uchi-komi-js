@@ -23,8 +23,7 @@ module.exports = function(dbUrl, hostUrl) {
         task._id = body.id;
         task._rev  = body.rev;
         // assign a url based on id and commit back to database
-        // FIXME: don't use hardcoded params
-        task.url = 'http://localhost:3000/' + body.id;
+        task.url = hostUrl + '/' + body.id;
         db.insert(task, function(err, body) {
           callback(err, task);
         });
