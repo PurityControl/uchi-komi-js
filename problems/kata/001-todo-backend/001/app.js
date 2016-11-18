@@ -5,6 +5,7 @@ var todos = require('./todo');
 
 var app = express();
 
+app.set('port', process.env.PORT || 3000);
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -84,6 +85,6 @@ app.delete('/:url', function(req, res, next) {
   });
 });
 
-app.listen(3000, function() {
-  console.log('Cors enabled server listening on port 3000');
+app.listen(app.get('port'), function() {
+  console.log('Cors enabled server listening on port ' + app.get('port'));
 });
