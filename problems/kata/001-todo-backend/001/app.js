@@ -1,16 +1,26 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var todos = require('./todo');
 
 var app = express();
 
+// FIXME: move this into a helper module
+app.set('port', process.env.PORT || 3000);
+app.set('host', process.env.HOST || 'http://localhost');
+app.set('host_url', app.get('host') + ':' + app.get('port'));
+app.set('db_host', process.env.DB_HOST || 'http://localhost');
+app.set('db_port', process.env.DB_PORT || 5984);
+app.set('db_host_url', app.get('db_host') + ':' + app.get('db_port'));
+var todos = require('./todo')(app.get('db_host_url'), app.get('host_url'));
 app.use(cors());
 app.use(bodyParser.json());
 
 // TODO: abstract callback used in all routers
 
 app.get('/', function(req, res, next) {
+  console.log(req.path + ' path');
+  console.log(req.baseUrl + ' base url');
+  console.log(req.originalUrl + ' priginal url');
   todos.getAll(function(err, results) {
     console.log('Calling getAll from get /');
     if (err) {
@@ -84,6 +94,6 @@ app.delete('/:url', function(req, res, next) {
   });
 });
 
-app.listen(3000, function() {
-  console.log('Cors enabled server listening on port 3000');
+app.listen(app.get('port'), function() {
+  console.log('Cors enabled server listening on port ' + app.get('port'));
 });
