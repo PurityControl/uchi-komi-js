@@ -24,3 +24,13 @@ cleaner and easier to reason about. Further the flocking rules in
 abstracting out the code smells have made each router have a very
 similar pattern. This should allow us to make further improvements in
 future refactorings.
+* Sitting Three
+Allow host, port, db_host and db_port to be set by enviromental
+variables if they are set.
+
+Unhappy with granularity of github commits.  This hightlights how
+shabby the thinking was and how the refactoring lacked a clarity of
+purpose. I allowed experimentation of ideas to get too far before
+making a commit and then didn't back out and refine the process to
+ensure that we had a working application between each commit. The
+result was a large commit between two working implementations.
