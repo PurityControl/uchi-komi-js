@@ -17,14 +17,14 @@ app.use(bodyParser.json());
 
 // TODO: is this abstraction good if so should it be in another file?
 
-function genResponse(res, mymap) {
+function genResponse(res, resourceMap) {
   return function(err, results) {
-    if (mymap.consoleMessage) {
-      console.log(mymap.consoleMessage);
+    if (resourceMap.consoleMessage) {
+      console.log(resourceMap.consoleMessage);
     }
     if (err) {
-      res.status(mymap.errorStatus || 500);
-      res.json({error: mymap.errorMessage || 'error'});
+      res.status(resourceMap.errorStatus || 500);
+      res.json({error: resourceMap.errorMessage || 'error'});
     } else {
       res.json(results);
     }
