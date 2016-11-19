@@ -49,15 +49,11 @@ app.post('/', function(req, res, next) {
 });
 
 app.delete('/', function(req, res, next) {
-  todos.deleteAll(function(err, result) {
-    console.log('delete all tasks from DELETE /');
-    if (err) {
-      res.status(500);
-      res.json({error: 'error deleting all tasks'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.deleteAll(genResponse(res, {
+    consoleMessage: 'delete all tasks from DELETE /',
+    errorStatus: 500,
+    errorMessage: 'error deleting all tasks'
+  }));
 });
 
 app.get('/:url', function(req, res, next) {
