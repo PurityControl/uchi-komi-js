@@ -17,6 +17,20 @@ app.use(bodyParser.json());
 
 // TODO: abstract callback used in all routers
 
+function genResponse(res, mymap) {
+  return function(err, results) {
+    if (mymap.consoleMessage) {
+      console.log(mymap.consoleMessage);
+    }
+    if (err) {
+      res.status(mymap.errorStatus || 500);
+      res.json({error: mymap.errorMessage || 'error'});
+    } else {
+      res.json(results);
+    }
+  };
+}
+
 app.get('/', function(req, res, next) {
   todos.getAll(function(err, results) {
     console.log('Calling getAll from get /');
