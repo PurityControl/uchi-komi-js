@@ -58,15 +58,11 @@ app.delete('/', function(req, res, next) {
 
 app.get('/:url', function(req, res, next) {
   var url = req.params.url;
-  todos.getTask(url, function(err, result) {
-    console.log('getting task from GET /' + url);
-    if (err) {
-      res.status(500);
-      res.json({error: 'failed to get task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.getTask(url, genResponse(res, {
+    consoleMessage: 'getting task from GET /' + url,
+    errorStatus: 500,
+    errorMessage: 'failed to get task'
+  }));
 });
 
 app.patch('/:url', function(req, res, next) {
