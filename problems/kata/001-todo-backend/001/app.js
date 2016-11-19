@@ -66,15 +66,11 @@ app.get('/:url', function(req, res, next) {
 });
 
 app.patch('/:url', function(req, res, next) {
-  todos.updateTask(req.params.url, req.body, function(err, result) {
-    console.log('updating task from PATH /' + req.params.url);
-    if (err) {
-      req.status(500);
-      req.response({error: 'couldn\'t update task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.updateTask(req.params.url, req.body, genResponse(res, {
+    consoleMessage: 'updating task from PATH /' + req.params.url,
+    errorStatus: 500,
+    errorMessage: 'couldn\'t update task'
+  }));
 });
 
 app.delete('/:url', function(req, res, next) {
