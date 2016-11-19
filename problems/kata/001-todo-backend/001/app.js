@@ -32,15 +32,11 @@ function genResponse(res, mymap) {
 }
 
 app.get('/', function(req, res, next) {
-  todos.getAll(function(err, results) {
-    console.log('Calling getAll from get /');
-    if (err) {
-      res.stats(500);
-      res.json({error: 'error retrieving tasks'});
-    } else {
-      res.json(results);
-    }
-  });
+  todos.getAll(genResponse(res, {
+    consoleMessage: 'Calling getAll from get /',
+    errorStatus: 500,
+    errorMessage: 'error retrieving tasks'
+  }));
 });
 
 app.post('/', function(req, res, next) {
