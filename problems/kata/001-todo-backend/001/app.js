@@ -18,9 +18,6 @@ app.use(bodyParser.json());
 // TODO: abstract callback used in all routers
 
 app.get('/', function(req, res, next) {
-  console.log(req.path + ' path');
-  console.log(req.baseUrl + ' base url');
-  console.log(req.originalUrl + ' priginal url');
   todos.getAll(function(err, results) {
     console.log('Calling getAll from get /');
     if (err) {
