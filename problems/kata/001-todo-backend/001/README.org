@@ -34,3 +34,9 @@ purpose. I allowed experimentation of ideas to get too far before
 making a commit and then didn't back out and refine the process to
 ensure that we had a working application between each commit. The
 result was a large commit between two working implementations.
+* Sitting Four
+Abstract sending response out into a generic genResponse function.
+I am not sure if this is a great abstraction or if the 500 status
+needs to be sent as part of the responseMap.
+If we do settle on this as an abstraction then maybe this should be
+abstracted out into its own helper module.

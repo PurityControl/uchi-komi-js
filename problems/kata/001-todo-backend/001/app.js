@@ -15,83 +15,70 @@ var todos = require('./todo')(app.get('db_host_url'), app.get('host_url'));
 app.use(cors());
 app.use(bodyParser.json());
 
-// TODO: abstract callback used in all routers
+// TODO: is this abstraction good if so should it be in another file?
 
-app.get('/', function(req, res, next) {
-  console.log(req.path + ' path');
-  console.log(req.baseUrl + ' base url');
-  console.log(req.originalUrl + ' priginal url');
-  todos.getAll(function(err, results) {
-    console.log('Calling getAll from get /');
+function genResponse(res, resourceMap) {
+  return function(err, results) {
+    if (resourceMap.consoleMessage) {
+      console.log(resourceMap.consoleMessage);
+    }
     if (err) {
-      res.stats(500);
-      res.json({error: 'error retrieving tasks'});
+      res.status(resourceMap.errorStatus || 500);
+      res.json({error: resourceMap.errorMessage || 'error'});
     } else {
       res.json(results);
     }
-  });
+  };
+}
+
+app.get('/', function(req, res, next) {
+  todos.getAll(genResponse(res, {
+    consoleMessage: 'Calling getAll from get /',
+    errorStatus: 500,
+    errorMessage: 'error retrieving tasks'
+  }));
 });
 
 app.post('/', function(req, res, next) {
   var task = {title: req.body.title, completed: false, order: req.body.order};
-  todos.addTask(task, function(err, result) {
-    console.log('adding task from POST /');
-    if (err) {
-      res.status(500);
-      res.json({error: 'failed to create task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.addTask(task, genResponse(res, {
+    consoleMessage: 'Calling addTask from post /',
+    errorStatus: 500,
+    errorMessage: 'failed to create task'
+  }));
 });
 
 app.delete('/', function(req, res, next) {
-  todos.deleteAll(function(err, result) {
-    console.log('delete all tasks from DELETE /');
-    if (err) {
-      res.status(500);
-      res.json({error: 'error deleting all tasks'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.deleteAll(genResponse(res, {
+    consoleMessage: 'delete all tasks from DELETE /',
+    errorStatus: 500,
+    errorMessage: 'error deleting all tasks'
+  }));
 });
 
 app.get('/:url', function(req, res, next) {
   var url = req.params.url;
-  todos.getTask(url, function(err, result) {
-    console.log('getting task from GET /' + url);
-    if (err) {
-      res.status(500);
-      res.json({error: 'failed to get task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.getTask(url, genResponse(res, {
+    consoleMessage: 'getting task from GET /' + url,
+    errorStatus: 500,
+    errorMessage: 'failed to get task'
+  }));
 });
 
 app.patch('/:url', function(req, res, next) {
-  todos.updateTask(req.params.url, req.body, function(err, result) {
-    console.log('updating task from PATH /' + req.params.url);
-    if (err) {
-      req.status(500);
-      req.response({error: 'couldn\'t update task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.updateTask(req.params.url, req.body, genResponse(res, {
+    consoleMessage: 'updating task from PATH /' + req.params.url,
+    errorStatus: 500,
+    errorMessage: 'couldn\'t update task'
+  }));
 });
 
 app.delete('/:url', function(req, res, next) {
-  todos.deleteTask(req.params.url, function(err, result) {
-    console.log('deleting task from PATH /' + req.params.url);
-    if (err) {
-      req.status(500);
-      req.response({error: 'couldn\'t delete task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todos.deleteTask(req.params.url, genResponse(res, {
+    consoleMessage: 'deleting task from PATH /' + req.params.url,
+    errorStatus: 500,
+    errorMessage: 'couldn\'t delete task'
+  }));
 });
 
 app.listen(app.get('port'), function() {
