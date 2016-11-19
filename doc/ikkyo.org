@@ -62,7 +62,12 @@ information:
 
 1. If your project is not to be shared you should set the property
    '"private": true' which will prevent you accidentally sharing it.
-2. adding a ~start~ property to the scripts object so that you can start
+2. Adding the engine property so people know the minimum version of
+   node required for the project.
+   #+BEGIN_SRC javascript
+   "engine": "node" >= "4.2.2"
+   #+END_SRC
+4. Adding a ~start~ property to the scripts object so that you can start
    your project with ~npm start~
    #+BEGIN_SRC javasript
    "scripts": {
