@@ -15,7 +15,7 @@ var todos = require('./todo')(app.get('db_host_url'), app.get('host_url'));
 app.use(cors());
 app.use(bodyParser.json());
 
-// TODO: abstract callback used in all routers
+// TODO: is this abstraction good if so should it be in another file?
 
 function genResponse(res, mymap) {
   return function(err, results) {
