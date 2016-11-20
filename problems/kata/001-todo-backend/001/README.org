@@ -40,3 +40,8 @@ I am not sure if this is a great abstraction or if the 500 status
 needs to be sent as part of the responseMap.
 If we do settle on this as an abstraction then maybe this should be
 abstracted out into its own helper module.
+* Sitting Four
+Moved todo module into a lib folder. Moved setting up environment
+variables into it own module under the config folder.
+Small refactorings but they do a good job of tidying up the main app
+file.
