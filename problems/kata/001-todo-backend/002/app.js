@@ -23,7 +23,12 @@ app.get('/', function(req, res, next) {
 
 app.post('/', function(req, res, next) {
   console.log('POST / called');
-  res.json(req.body);
+  pool.query(
+    'insert into todo(title) values($1)',
+    [req.body.title],
+    function(err, result) {
+      res.json(req.body);
+    });
 });
 
 app.delete('/', function(req, res, next) {
