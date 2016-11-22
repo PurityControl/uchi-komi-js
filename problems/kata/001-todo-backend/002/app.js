@@ -62,9 +62,10 @@ app.patch('/:url', function(req, res, next) {
     function(err, result) {
       var todo = result.rows[0];
       var title = req.body.title || todo.title;
+      var completed = req.body.completed || todo.completed;
       pool.query(
-        'update todo set title = $1 where id = $2 returning *',
-        [title, todo.id],
+        'update todo set title=$1, completed=$2 where id=$3 returning *',
+        [title, completed, todo.id],
         function(err, result) {
           res.json(result.rows[0]);
         });
