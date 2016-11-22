@@ -4,6 +4,7 @@
   "description": "postgresql implementation of todo backend api",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "mocha"
   },
   "author": "Purity Control",
