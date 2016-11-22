@@ -27,7 +27,13 @@ app.post('/', function(req, res, next) {
     'insert into todo(title, completed) values($1, $2) returning *',
     [req.body.title, false],
     function(err, result) {
-      res.json(result.rows[0]);
+      var id = result.rows[0].id;
+      pool.query(
+        'update todo set url=$1 where id=$2 returning *',
+        ['http://localhost:3000/' + id, id],
+        function(err, result) {
+          res.json(result.rows[0]);
+        });
     });
 });
 
