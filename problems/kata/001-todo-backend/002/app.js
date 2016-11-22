@@ -44,7 +44,8 @@ app.post('/setup/db', function(req, res, next) {
   pool.query('create table todo ' +
              '(id serial, ' +
              'title varchar(100),' +
-             'completed boolean)');
+             'completed boolean,' +
+             'url varchar(255))');
   res.json({success: 'db setup succesfully'});
 });
 
