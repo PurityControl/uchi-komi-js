@@ -1,0 +1,11 @@
+{
+  "name": "todo",
+  "version": "0.0.1",
+  "description": "postgresql implementation of todo backend api",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Purity Control",
+  "license": "ISC"
+}
