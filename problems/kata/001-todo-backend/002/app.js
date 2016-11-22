@@ -72,6 +72,16 @@ app.patch('/:url', function(req, res, next) {
     });
 });
 
+app.delete('/:url', function(req, res, next) {
+  console.log('DELETE /' + req.params.url);
+  pool.query(
+    'delete from todo where id=$1',
+    [req.params.url],
+    function(err, result) {
+      res.json([]);
+    });
+});
+
 app.post('/setup/db', function(req, res, next) {
   console.log('POST /setup/db');
   pool.query('drop table todo');
