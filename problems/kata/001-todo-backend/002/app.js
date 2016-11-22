@@ -54,6 +54,23 @@ app.get('/:url', function(req, res, next) {
     });
 });
 
+app.patch('/:url', function(req, res, next) {
+  console.log('PATCH /' + req.params.url);
+  pool.query(
+    'select * from todo where id = $1',
+    [req.params.url],
+    function(err, result) {
+      var todo = result.rows[0];
+      var title = req.body.title || todo.title;
+      pool.query(
+        'update todo set title = $1 where id = $2 returning *',
+        [title, todo.id],
+        function(err, result) {
+          res.json(result.rows[0]);
+        });
+    });
+});
+
 app.post('/setup/db', function(req, res, next) {
   console.log('POST /setup/db');
   pool.query('drop table todo');
