@@ -24,10 +24,10 @@ app.get('/', function(req, res, next) {
 app.post('/', function(req, res, next) {
   console.log('POST / called');
   pool.query(
-    'insert into todo(title) values($1)',
-    [req.body.title],
+    'insert into todo(title, completed) values($1, $2) returning *',
+    [req.body.title, false],
     function(err, result) {
-      res.json(req.body);
+      res.json(result.rows[0]);
     });
 });
 
