@@ -27,6 +27,13 @@ app.delete('/', function(req, res, next) {
   res.json([]);
 });
 
+app.post('/setup/db', function(req, res, next) {
+  console.log('POST /setup/db');
+  pool.query('drop table todo');
+  pool.query('create table todo (id serial, title varchar(100))');
+  res.json({success: 'db setup succesfully'});
+});
+
 app.listen(3000, function() {
   console.log('app listening on port 3000');
 });
