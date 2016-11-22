@@ -24,8 +24,8 @@ app.get('/', function(req, res, next) {
 app.post('/', function(req, res, next) {
   console.log('POST / called');
   pool.query(
-    'insert into todo(title, completed) values($1, $2) returning *',
-    [req.body.title, false],
+    'insert into todo(title, completed, "order") values($1, $2, $3) returning *',
+    [req.body.title, false, req.body.order],
     function(err, result) {
       var id = result.rows[0].id;
       pool.query(
