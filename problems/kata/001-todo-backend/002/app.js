@@ -41,7 +41,10 @@ app.delete('/', function(req, res, next) {
 app.post('/setup/db', function(req, res, next) {
   console.log('POST /setup/db');
   pool.query('drop table todo');
-  pool.query('create table todo (id serial, title varchar(100))');
+  pool.query('create table todo ' +
+             '(id serial, ' +
+             'title varchar(100),' +
+             'completed boolean)');
   res.json({success: 'db setup succesfully'});
 });
 
