@@ -16,6 +16,11 @@ app.post('/', function(req, res, next) {
   res.json(req.body);
 });
 
+app.delete('/', function(req, res, next) {
+  console.log('DELETE / called');
+  res.json([]);
+});
+
 app.listen(3000, function() {
   console.log('app listening on port 3000');
 });
