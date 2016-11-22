@@ -14,7 +14,11 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
   console.log('GET / called');
-  res.json([]);
+  pool.query(
+    'select * from todo',
+    function(err, result) {
+      res.json(result.rows);
+    });
 });
 
 app.post('/', function(req, res, next) {
