@@ -1,6 +1,12 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var Pool = require('pg').Pool;
+var pool = new Pool({
+  database: 'todo',
+  max: 10,
+  idelTimeoutMillis: 1000
+});
 
 var app = express();
 app.use(cors());
