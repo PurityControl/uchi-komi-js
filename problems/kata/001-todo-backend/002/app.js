@@ -13,7 +13,7 @@ app.get('/', function(req, res, next) {
 
 app.post('/', function(req, res, next) {
   console.log('POST / called');
-  res.json([]);
+  res.json(req.body);
 });
 
 app.listen(3000, function() {
