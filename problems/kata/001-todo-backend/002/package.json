@@ -1,0 +1,26 @@
+{
+  "name": "todo",
+  "version": "0.0.1",
+  "description": "postgresql implementation of todo backend api",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "mocha"
+  },
+  "author": "Purity Control",
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": ">= 7.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "pg": "^6.1.0"
+  }
+}
