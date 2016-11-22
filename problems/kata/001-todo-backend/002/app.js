@@ -33,7 +33,9 @@ app.post('/', function(req, res, next) {
 
 app.delete('/', function(req, res, next) {
   console.log('DELETE / called');
-  res.json([]);
+  pool.query('delete from todo', function(err, result) {
+    res.json([]);
+  });
 });
 
 app.post('/setup/db', function(req, res, next) {
