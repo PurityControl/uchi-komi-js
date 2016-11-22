@@ -89,7 +89,8 @@ app.post('/setup/db', function(req, res, next) {
              '(id serial, ' +
              'title varchar(100),' +
              'completed boolean,' +
-             'url varchar(255))');
+             'url varchar(255),' +
+             '"order" integer)');
   res.json({success: 'db setup succesfully'});
 });
 
