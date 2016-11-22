@@ -44,6 +44,16 @@ app.delete('/', function(req, res, next) {
   });
 });
 
+app.get('/:url', function(req, res, next) {
+  console.log('GET /' + req.params.url);
+  pool.query(
+    'select * from todo where id=$1',
+    [req.params.url],
+    function(err, result) {
+      res.json(result.rows[0]);
+    });
+});
+
 app.post('/setup/db', function(req, res, next) {
   console.log('POST /setup/db');
   pool.query('drop table todo');
