@@ -8,6 +8,7 @@
   },
   "author": "Purity Control",
   "license": "ISC",
+  "private": true,
   "devDependencies": {
     "mocha": "^3.1.2"
   },
