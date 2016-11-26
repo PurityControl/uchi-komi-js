@@ -75,12 +75,14 @@ app.patch('/:url', function(req, res, next) {
 
 app.delete('/:url', function(req, res, next) {
   console.log('DELETE /' + req.params.url);
-  pool.query(
-    'delete from todo where id=$1',
-    [req.params.url],
-    function(err, result) {
-      res.json([]);
-    });
+  todo.delete(req.params.url, function(err, result) {
+    if (err) {
+      res.status = 500;
+      res.json({error: 'cannot delete task'});
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.post('/setup/db', function(req, res, next) {
