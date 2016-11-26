@@ -70,3 +70,18 @@ module.exports.delete = function(id, callback) {
       callback(err, []);
     });
 };
+
+module.exports.setupDB = function(callback) {
+  pool.query('drop table todo', function(err, result) {
+    pool.query(
+      'create table todo ' +
+        '(id serial, ' +
+        'title varchar(100),' +
+        'completed boolean,' +
+        'url varchar(255),' +
+        '"order" integer)',
+      function(err, result) {
+        callback(err, {success: 'db setup successfully'});
+      });
+  });
+};
