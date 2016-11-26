@@ -9,3 +9,6 @@ the code in discrete steps without ever breaking the tests.
 
 Running the tests on localhost with a local postgresdb the tests run
 in about 0.4s.
+* Sttting Two
+Abstract all database calls out into its own todo module. All calls to
+todo follow a similar form due to the flocking rules.
