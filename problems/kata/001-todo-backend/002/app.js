@@ -51,12 +51,14 @@ app.delete('/', function(req, res, next) {
 
 app.get('/:url', function(req, res, next) {
   console.log('GET /' + req.params.url);
-  pool.query(
-    'select * from todo where id=$1',
-    [req.params.url],
-    function(err, result) {
-      res.json(result.rows[0]);
-    });
+  todo.get(req.params.url, function(err, result) {
+    if (err) {
+      res.status = 500;
+      res.json({error: 'Cannot get todo'});
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.patch('/:url', function(req, res, next) {
