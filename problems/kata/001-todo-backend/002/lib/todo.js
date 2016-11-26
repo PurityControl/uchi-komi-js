@@ -28,3 +28,9 @@ module.exports.create = function(todo, callback) {
         });
     });
 };
+
+module.exports.deleteAll = function(callback) {
+  pool.query('delete from todo', function(err, result) {
+    callback(err, []);
+  });
+};
