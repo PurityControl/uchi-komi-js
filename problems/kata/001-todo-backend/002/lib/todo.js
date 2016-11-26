@@ -61,3 +61,12 @@ module.exports.update = function(id, updates, callback) {
         });
     });
 };
+
+module.exports.delete = function(id, callback) {
+  pool.query(
+    'delete from todo where id=$1',
+    [id],
+    function(err, result) {
+      callback(err, []);
+    });
+};
