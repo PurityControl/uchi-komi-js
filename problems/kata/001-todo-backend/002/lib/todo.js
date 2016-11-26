@@ -34,3 +34,12 @@ module.exports.deleteAll = function(callback) {
     callback(err, []);
   });
 };
+
+module.exports.get = function(id, callback) {
+    pool.query(
+    'select * from todo where id=$1',
+    [id],
+    function(err, result) {
+      callback(err, result.rows[0]);
+    });
+};
