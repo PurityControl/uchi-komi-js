@@ -19,8 +19,9 @@ app.get('/', function(req, res, next) {
     if (err) {
       res.status = 500;
       res.json({error: 'could not get todos from database'});
+    } else {
+      res.json(result);
     }
-    res.json(result);
   });
 });
 
@@ -30,8 +31,9 @@ app.post('/', function(req, res, next) {
     if (err) {
       res.status = 500;
       res.json({error: 'Could not create the todo'});
+    } else {
+      res.json(result);
     }
-    res.json(result);
   });
 });
 
@@ -41,8 +43,9 @@ app.delete('/', function(req, res, next) {
     if (err) {
       res.status = 500;
       res.json({error: 'Could not delete all todo\'s'});
+    } else {
+      res.json(result);
     }
-    res.json(result);
   });
 });
 
