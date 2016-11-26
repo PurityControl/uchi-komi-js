@@ -7,6 +7,7 @@ var pool = new Pool({
   max: 10,
   idelTimeoutMillis: 1000
 });
+var todo = require('./lib/todo');
 
 var app = express();
 app.use(cors());
