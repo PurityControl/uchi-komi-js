@@ -26,18 +26,13 @@ app.get('/', function(req, res, next) {
 
 app.post('/', function(req, res, next) {
   console.log('POST / called');
-  pool.query(
-    'insert into todo(title, completed, "order") values($1, $2, $3) returning *',
-    [req.body.title, false, req.body.order],
-    function(err, result) {
-      var id = result.rows[0].id;
-      pool.query(
-        'update todo set url=$1 where id=$2 returning *',
-        ['http://localhost:3000/' + id, id],
-        function(err, result) {
-          res.json(result.rows[0]);
-        });
-    });
+  todo.create(req.body, function(err, result) {
+    if (err) {
+      res.status = 500;
+      res.json({error: 'Could not create the todo'});
+    }
+    res.json(result);
+  });
 });
 
 app.delete('/', function(req, res, next) {
