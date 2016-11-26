@@ -37,8 +37,12 @@ app.post('/', function(req, res, next) {
 
 app.delete('/', function(req, res, next) {
   console.log('DELETE / called');
-  pool.query('delete from todo', function(err, result) {
-    res.json([]);
+  todo.deleteAll(function(err, result) {
+    if (err) {
+      res.status = 500;
+      res.json({error: 'Could not delete all todo\'s'});
+    }
+    res.json(result);
   });
 });
 
