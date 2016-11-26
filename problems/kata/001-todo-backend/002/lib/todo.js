@@ -43,3 +43,21 @@ module.exports.get = function(id, callback) {
       callback(err, result.rows[0]);
     });
 };
+
+module.exports.update = function(id, updates, callback) {
+    pool.query(
+    'select * from todo where id = $1',
+    [id],
+    function(err, result) {
+      var todo = result.rows[0];
+      var title = updates.title || todo.title;
+      var completed = updates.completed || todo.completed;
+      var order = updates.order || todo.order
+      pool.query(
+        'update todo set title=$1, completed=$2, "order"=$3 where id=$4 returning *',
+        [title, completed, order, todo.id],
+        function(err, result) {
+          callback(err, result.rows[0]);
+        });
+    });
+};
