@@ -81,6 +81,9 @@ module.exports.setupDB = function(callback) {
         'url varchar(255),' +
         '"order" integer)',
       function(err, result) {
+        if (err) {
+          console.log('Error setting up db schema \n' + err);
+        }
         callback(err, {success: 'db setup successfully'});
       });
   });
