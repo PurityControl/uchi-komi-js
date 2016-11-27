@@ -45,14 +45,7 @@ app.patch('/:url', function(req, res, next) {
 
 app.delete('/:url', function(req, res, next) {
   console.log('DELETE /' + req.params.url);
-  todo.delete(req.params.url, function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'cannot delete task'});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.delete(req.params.url, genResponse('cannot delete task', res));
 });
 
 app.post('/setup/db', function(req, res, next) {
