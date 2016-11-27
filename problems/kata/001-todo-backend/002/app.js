@@ -35,14 +35,7 @@ app.delete('/', function(req, res, next) {
 
 app.get('/:url', function(req, res, next) {
   console.log('GET /' + req.params.url);
-  todo.get(req.params.url, function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'Cannot get todo'});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.get(req.params.url, genResponse('Cannot get todo', res));
 });
 
 app.patch('/:url', function(req, res, next) {
