@@ -7,6 +7,17 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+var genResponse = function(errorMessage, res) {
+  return function(err, result) {
+    if (err) {
+      res.status = 500;
+      res.json({error: errorMessage});
+    } else {
+      res.json(result);
+    }
+  };
+};
+
 app.get('/', function(req, res, next) {
   console.log('GET / called');
   todo.getAll(function(err, result) {
