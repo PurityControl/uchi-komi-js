@@ -50,14 +50,7 @@ app.delete('/:url', function(req, res, next) {
 
 app.post('/setup/db', function(req, res, next) {
   console.log('POST /setup/db');
-  todo.setupDB(function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'could not create db schema \n' + err});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.setupDB(genResponse('could not create db schema \n', res));
 });
 
 app.listen(3000, function() {
