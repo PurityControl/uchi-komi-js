@@ -20,14 +20,7 @@ var genResponse = function(errorMessage, res) {
 
 app.get('/', function(req, res, next) {
   console.log('GET / called');
-  todo.getAll(function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'could not get todos from database'});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.getAll(genResponse('could not get todos from database', res));
 });
 
 app.post('/', function(req, res, next) {
