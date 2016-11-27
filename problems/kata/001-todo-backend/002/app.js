@@ -40,14 +40,7 @@ app.get('/:url', function(req, res, next) {
 
 app.patch('/:url', function(req, res, next) {
   console.log('PATCH /' + req.params.url);
-  todo.update(req.params.url, req.body, function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'Cannot update the todo'});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.update(req.params.url, req.body, genResponse('Cannot update the todo', res));
 });
 
 app.delete('/:url', function(req, res, next) {
