@@ -25,14 +25,7 @@ app.get('/', function(req, res, next) {
 
 app.post('/', function(req, res, next) {
   console.log('POST / called');
-  todo.create(req.body, function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'Could not create the todo'});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.create(req.body, genResponse('Could not create the todo', res));
 });
 
 app.delete('/', function(req, res, next) {
