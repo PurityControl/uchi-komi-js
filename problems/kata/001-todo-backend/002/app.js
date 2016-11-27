@@ -30,14 +30,7 @@ app.post('/', function(req, res, next) {
 
 app.delete('/', function(req, res, next) {
   console.log('DELETE / called');
-  todo.deleteAll(function(err, result) {
-    if (err) {
-      res.status = 500;
-      res.json({error: 'Could not delete all todo\'s'});
-    } else {
-      res.json(result);
-    }
-  });
+  todo.deleteAll(genResponse('Could not delete all todo\'s', res));
 });
 
 app.get('/:url', function(req, res, next) {
