@@ -75,6 +75,11 @@ app.delete('/:url', function(req, res, next) {
   }));
 });
 
+app.get('/setup/db', function(req, res, next) {
+  todos.setupDB();
+  res.json([]);
+});
+
 app.listen(app.get('port'), function() {
   console.log('Cors enabled server listening on port ' + app.get('port'));
 });
