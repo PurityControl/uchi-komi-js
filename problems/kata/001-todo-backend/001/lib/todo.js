@@ -70,5 +70,21 @@ module.exports = function(dbUrl, hostUrl) {
     });
   };
 
+  todo.setupDB = function() {
+    db.insert(
+      { "views":
+        { "all_todos":
+          { "map": function(doc) { if ('title' in doc) { emit(doc._id, doc); }}}
+        }
+      }, '_design/todos', function (error, response) {
+        console.log("adding schema");
+        if (error) {
+          console.log('error: ' + error);
+        } else {
+          console.log('schema response ' + response);
+        }
+      });
+  };
+
   return todo;
 };
