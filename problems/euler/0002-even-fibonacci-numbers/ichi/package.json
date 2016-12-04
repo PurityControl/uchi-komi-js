@@ -1,0 +1,23 @@
+{
+  "name": "even-fibonaccis",
+  "version": "0.0.1",
+  "description": "implementation of euler even fibonacci problem problem.",
+  "main": "lib/even_fibs.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "keywords": {
+    "type": "git",
+    "url": "https://github.com/PurityControl/uchi-komi-js/blob/master/README.org"
+  },
+  "keywords": [
+    "euler",
+    "uchi-komi"
+  ],
+  "author": "Purity Control",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
